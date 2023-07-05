@@ -1,99 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Arithmetic Operations</title>
-  <style>
-    label {
-      color: red;
+  <head>
+    <title>Arithmetic Operations</title>
+    <style>
+      label {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="num1" placeholder="Enter number 1" onblur="performOperation('+')">
+<input type="text" id="num2" placeholder="Enter number 2" onblur="performOperation('-')">
+
+<button onclick="performOperation('+')">Add</button>
+<button onclick="performOperation('-')">Subtract</button>
+<button onclick="performOperation('*')">Multiply</button>
+<button onclick="performOperation('/')">Divide</button>
+<label id="msg"></label>
+
+<script>
+    function performOperation(operator) {
+      var num1 = parseFloat(document.getElementById('num1').value);
+      var num2 = parseFloat(document.getElementById('num2').value);
+    
+      if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById('msg').innerHTML = '* Please enter valid numbers.';
+        document.getElementById('msg').style.color = 'red';
+      } else {
+        var result;
+        if (operator === '+') {
+          result = num1 + num2;
+        } else if (operator === '-') {
+          result = num1 - num2;
+        }
+    
+        document.getElementById('msg').innerHTML = 'Result: ' + result;
+        document.getElementById('msg').style.color = 'black';
+      }
     }
-  </style>
-</head>
-<body>
-  <h2>Arithmetic Operations</h2>
-  <input type="text" id="operand1" placeholder="Enter a number">
-  <input type="text" id="operand2" placeholder="Enter a number">
-  <br>
-  <button onclick="add()">Add (+)</button>
-  <button onclick="subtract()">Subtract (-)</button>
-  <button onclick="multiply()">Multiply (*)</button>
-  <button onclick="divide()">Divide (/)</button>
-  <br>
-  <label id="error1"></label>
-  <label id="error2"></label>
-  <br>
-  <label id="msg"></label>
-  
-  <script>
-    function isNumeric(value) {
-  return !isNaN(parseFloat(value)) && isFinite(value);
-}
-
-function validateInput(inputId, errorId) {
-  const inputElement = document.getElementById(inputId);
-  const errorElement = document.getElementById(errorId);
-  const value = inputElement.value.trim();
-
-  if (value === '' || !isNumeric(value)) {
-    errorElement.textContent = '* Invalid input. Please enter a valid number.';
-    return false;
-  }
-
-  errorElement.textContent = '';
-  return true;
-}
-
-function add() {
-  if (!validateInput('operand1', 'error1') || !validateInput('operand2', 'error2')) {
-    return;
-  }
-
-  const operand1 = parseFloat(document.getElementById('operand1').value);
-  const operand2 = parseFloat(document.getElementById('operand2').value);
-  const result = operand1 + operand2;
-
-  document.getElementById('msg').textContent = `Result: ${result}`;
-}
-
-function subtract() {
-  if (!validateInput('operand1', 'error1') || !validateInput('operand2', 'error2')) {
-    return;
-  }
-
-  const operand1 = parseFloat(document.getElementById('operand1').value);
-  const operand2 = parseFloat(document.getElementById('operand2').value);
-  const result = operand1 - operand2;
-
-  document.getElementById('msg').textContent = `Result: ${result}`;
-}
-
-function multiply() {
-  if (!validateInput('operand1', 'error1') || !validateInput('operand2', 'error2')) {
-    return;
-  }
-
-  const operand1 = parseFloat(document.getElementById('operand1').value);
-  const operand2 = parseFloat(document.getElementById('operand2').value);
-  const result = operand1 * operand2;
-
-  document.getElementById('msg').textContent = `Result: ${result}`;
-}
-
-function divide() {
-  if (!validateInput('operand1', 'error1') || !validateInput('operand2', 'error2')) {
-    return;
-  }
-
-  const operand1 = parseFloat(document.getElementById('operand1').value);
-  const operand2 = parseFloat(document.getElementById('operand2').value);
-
-  if (operand2 === 0) {
-    document.getElementById('msg').textContent = 'Result: Infinity (Cannot divide by zero)';
-  } else {
-    const result = operand1 / operand2;
-    document.getElementById('msg').textContent = `Result: ${result}`;
-  }
-}
-
-  </script>
-</body>
+    </script>
+  </body>
 </html>
