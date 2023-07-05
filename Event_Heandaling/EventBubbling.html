@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    
+        <div id="container">
+        <button id="button">Click me!</button>
+        </div>
+        <pre id="output"></pre>
+    
+</body>
+<script>
+const output = document.querySelector("#output");
+function handleClick(e) {
+output.textContent += `You clicked on a ${e.currentTarget.tagName} element\n`;
+e.stopPropagation()
+}
+
+let div1 = document.querySelector("#container");
+let div2 = document.querySelector("#body");
+let div3 = document.querySelector("#button");
+
+div1.addEventListener("click", handleClick); //,{ capture: true }
+div2.addEventListener("click", handleClick);
+div3.addEventListener("click", handleClick);
+</script> 
+</html>
